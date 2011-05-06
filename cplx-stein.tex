@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+
+\newcommand\DD{\mathbb D}
+\newcommand\CC{\mathbb C}
+\newcommand\conj{\overline}
+\newcommand\del{\partial}
+\newcommand\ptl[2]{\frac{\partial{#1}}{\partial{#2}}}
+
+\begin{document}
+\section{Preliminaries}
+\begin{enumerate}
+  \setcounter{enumi}{6}
+\item
+  \begin{enumerate}
+  \item Using the hint, we first compute
+    \begin{eqnarray*}
+      \left| \frac{ w - re^{i\theta} }{ 1 - \overline{w}z } \right| &=&
+      \frac{ |e^{i\theta}| \cdot | we^{-i\theta} - r | }{ | 1 - \overline{we^{-i\theta}}z |} \\
+      &=& \left| \frac{ w' - r }{ 1 - \overline{w'}z } \right|
+    \end{eqnarray*} where $w' = we^{-i\theta}$. So by adjusting $w$,
+    we assume that $z=r$ is real. Then we compute
+    \begin{eqnarray*}
+      |w-r| \leq |1-\overline{w}r| &\iff&
+      |w-r|^2 \leq |1-\overline{w}r|^2 \\
+      &\iff& (w-r)(\overline{w}-r) \leq (1-wr)(1-\overline{w}r) \\
+      &\iff& |w|^2 - wr - \overline{w}r + r^2 \leq 1 - wr -
+      \overline{w}r + |w|^2r^2 \\
+      &\iff& |w|^2 + r^2 \leq 1 + |w|^2r^2
+    \end{eqnarray*}
+    And we have $1 \geq |w|^2$ and $1 \geq r^2$, which gives that
+    \begin{eqnarray*}
+      0 &\leq& (1-|w|^2)(1-r^2) \\
+      &=& 1 + |w|^2r^2 - |w|^2 - r^2
+    \end{eqnarray*}
+    with equality if and only if $|w| = 1$ or $r = 1$.
+  \item
+    \begin{enumerate}
+    \item Part (a) shows that $F$ maps the unit disc to itself. And
+      $F$ is holomorphic by Proposition 2.2 (since
+      $|\overline{w}z|<1$).
+    \item This is clear.
+    \item Part (a) again.
+    \item
+      \begin{eqnarray*}
+        F(F(z)) &=& \frac{ w -
+          \frac{w-z}{1-\overline{w}z}}{1-\overline{w}\frac{w-z}{1-\overline{w}z}}
+        \\
+        &=& \frac{w-|w|^2z-w+z}{1-\overline{w}z-|w|^2+\overline{w}z} \\
+        &=& z
+      \end{eqnarray*}
+    \end{enumerate}
+  \end{enumerate}
+\item
+  \newcommand\p[4]{\ptl{#1}{#2}\ptl{#3}{#4}}
+  \newcommand\cf{\conj f}
+  \begin{eqnarray*}
+    \ptl gz \ptl fz + \ptl g{\conj z} \ptl{\conj f}z &=&
+    \frac14 \left(\ptl gx + \frac1i \ptl gy\right) \left(\ptl
+      fx+\frac1i\ptl fy\right) + \frac14\left(\ptl gx - \frac1i\ptl
+      gy\right)\left(\ptl{\conj f}x + \frac1i\ptl{\conj f}y\right) \\
+    &=& \frac14 \left[ \ptl gx \left( \ptl fx + \ptl \cf x + \frac1i
+        \left( \ptl fy + \ptl \cf y \right)\right) + \frac1i \ptl gy
+      \left( \ptl fx - \ptl \cf x + \frac 1i\left( \ptl fy - \ptl \cf
+          y \right)
+      \right)\right] \\
+    &=& \frac12 \left[ \ptl gx \left( \ptl {(\Re f)}x + \frac1i \ptl {(\Re
+          f)}y \right) + \ptl gy \left( \ptl {(\Im f)} x +
+        \frac1i \ptl {(\Im f)} y \right) \right] \\
+    &=& \p gx{(\Re f)}z + \p gy{(\Im f)}z \\
+    &=& \ptl hz
+  \end{eqnarray*}
+\item
+  We have $x = r\cos(\theta)$ and $y = r\sin(\theta)$, so we have
+  \begin{align}
+    \ptl fr &= \cos(\theta)\ptl fx + \sin(\theta)\ptl fy \\
+    \ptl f\theta &= r\cos(\theta)\ptl fy - r\sin(\theta)\ptl fx
+  \end{align}
+  So
+  \begin{eqnarray*}
+    \ptl ur &=& \cos(\theta)\ptl ux + \sin(\theta)\ptl uy \\
+    &=& \cos(\theta) \ptl vy - \sin(\theta) \ptl vx \\
+    &=& \frac1r \ptl v\theta
+  \end{eqnarray*} and
+  \begin{eqnarray*}
+    \frac1r\ptl u\theta &=& \cos(\theta)\ptl uy - \sin(\theta)\ptl ux
+    \\
+    &=& -\cos(\theta)\ptl vx - \sin(\theta)\ptl vy \\
+    &=& -\ptl vr
+  \end{eqnarray*}
+
+  And finally, if we let $\log = u+iv$, so that $u(r,\theta) = \log r$
+  and $v(r,\theta) = \theta$, on the region $-\pi<\theta<\pi$ and
+  $r>0$, we have
+  \begin{align}
+    \ptl ur &= \frac1r \\
+    \ptl u\theta &= 0 \\
+    \ptl vr &= 0 \\
+    \ptl v\theta &= 1
+  \end{align}
+  so the Cauchy-Riemann equations are satisfied.
+\item
+  \begin{eqnarray*}
+    4\ptl{}z\ptl{}{\conj z} &=&
+    2\ptl{}z\left(\ptl{}x-\frac1i\ptl{}y\right) \\
+    &=& \ptl{^2}{x^2} + \frac1i\ptl{^2}{yx} - \frac1i\ptl{^2}{xy} +
+    \ptl{^2}{y^2} \\ &=& \Delta
+  \end{eqnarray*}
+  with smoothness assumptions.
+\item
+  \begin{eqnarray*}
+    \ptl{^2u}{x^2}+\ptl{^2u}{y^2} &=& \ptl{^2v}{xy} - \ptl{^2v}{yx}
+    \\&=& 0
+  \end{eqnarray*}
+\item All the partials of $f$ at the origin are zero, yet $f$ isn't
+  even differentiable (if $x=y$, then $f$ is just $|x|$).
+\item If $\Re(f)$ or $\Im(f)$ is constant, then $\ptl fx$ (or $\ptl
+  fy$) is zero, which implies that $f'=0$, so $f$ is constant by
+  Corollary 3.4. And if $\log|f| = \Re(\log f)$ is constant, then
+  $\log f$ is constant, so $\ptl{\log f}z = 0$, but $\ptl\log z \neq
+  0$ on $\CC$, so $\ptl fz = 0$, so $f$ is constant.
+\item If $N=M$ then this is $a_MB_M - a_MB_{M-1} = a_Mb_M$, and as $N$
+  increases, we add
+  \begin{eqnarray*}
+    \left[
+      a_{N+1}B_{N+1} - a_MB_{M-1} -\sum_{n=M}^N(a_{n+1}-a_n)B_n
+    \right] - \left[
+      a_NB_N - a_MB_{M-1} - \sum_{n=M}^{N-1}(a_{n+1}-a_n)B_n \right]
+    \\
+    = a_{N+1}B_{N+1} - a_NB_N - (a_{N+1} - a_N)B_N \\
+    = a_{N+1}B_{N+1} - a_{N+1}B_N = a_{N+1}b_{N+1}
+  \end{eqnarray*}
+\item We mean to show that $\lim_{r \to 1-}\sum_{n=1}^\infty
+  (1-r^n)a_n = 0$. Since $\sum a_n$ is convergent, we can pick $N$
+  such that $\sum_{n=N+1}^\infty a_n$ is arbitrarily small. We note
+  that $\sum_{n=N+1}^\infty (1-r^n)a_n \leq \sum_{n=N+1}^\infty a_n$
+  is smaller. And the rest of the terms are a finite sum, each of
+  whose terms goes to 0 as $r \to 1$.
+
+\end{enumerate}
+\end{document}
